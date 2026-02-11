@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "bilt": {
+      "transport": {
+        "type": "sse",
+        "url": "https://mcp.bilt.me/mcp/sse",
+        "headers": {
+          "Authorization": "Bearer bilt_live_YOUR_TOKEN_HERE"
+        }
+      },
+      "capabilities": ["tools"],
+      "metadata": {
+        "name": "Bilt",
+        "description": "Build and deploy full-stack applications",
+        "icon": "🏗️"
+      }
+    }
+  }
+}
