@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Bilt Logo](https://bilt.me/logo.png)
+![Bilt Logo](logo.png)
 
 **Enable AI agents to autonomously build and deploy full-stack mobile applications**
 
