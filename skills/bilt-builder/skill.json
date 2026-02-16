@@ -1,0 +1,53 @@
+{
+  "name": "bilt-builder",
+  "version": "1.0.0",
+  "description": "Build and deploy mobile apps autonomously using the Bilt MCP server. Create, iterate, and ship production React Native/Expo applications through natural language.",
+  "author": "Bilt",
+  "homepage": "https://bilt.me",
+  "repository": "https://github.com/buildingapplications/mcp",
+  "license": "MIT",
+  "category": "development",
+  "tags": ["mcp", "app-builder", "mobile", "deployment", "react-native", "expo"],
+  "requirements": {
+    "openclaw": ">=0.1.0",
+    "features": ["mcp"]
+  },
+  "setup": [
+    {
+      "step": 1,
+      "action": "Sign up at https://bilt.me/sign-up and generate an API key"
+    },
+    {
+      "step": 2,
+      "action": "Add the Bilt MCP server to your openclaw.json config"
+    },
+    {
+      "step": 3,
+      "action": "Restart the OpenClaw gateway: openclaw gateway restart"
+    }
+  ],
+  "config": {
+    "mcpServers": {
+      "bilt": {
+        "transport": {
+          "type": "sse",
+          "url": "https://mcp.bilt.me/mcp/sse",
+          "headers": {
+            "Authorization": "Bearer bilt_live_YOUR_TOKEN_HERE"
+          }
+        }
+      }
+    }
+  },
+  "tools": [
+    "bilt_list_projects",
+    "bilt_get_project",
+    "bilt_create_project",
+    "bilt_get_session",
+    "bilt_send_message",
+    "bilt_resume_workflow",
+    "bilt_cancel_workflow",
+    "bilt_get_messages"
+  ],
+  "entrypoint": "SKILL.md"
+}
