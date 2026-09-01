@@ -20,10 +20,9 @@ See [openclaw/config.json](openclaw/config.json)
 
 ### Cursor
 
-See [cursor/mcp_config.json](cursor/mcp_config.json)
+See [cursor/mcp.json](cursor/mcp.json)
 
 ## More Examples
 
-For complete examples and tutorials, visit:
-
-📚 https://bilt.me/docs/examples
+For complete setup and migration guidance, read the
+[Bilt MCP documentation](https://bilt.me/docs/quickstart-mcp).
