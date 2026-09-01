@@ -54,7 +54,7 @@ Include:
 
 ## Questions?
 
-- 📚 Read the [docs](https://bilt.me/docs)
+- Read the [docs](https://docs.bilt.me)
 - 💬 Join our [Discord](https://discord.gg/3FqNgmSYdZ)
 - 📧 Email [support@bilt.me](mailto:support@bilt.me)
 

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "bilt": {
+      "url": "https://mcp.bilt.me/mcp",
+      "headers": {
+        "Authorization": "Bearer bilt_live_YOUR_TOKEN_HERE"
+      }
+    }
+  }
+}
