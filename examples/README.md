@@ -25,4 +25,4 @@ See [cursor/mcp.json](cursor/mcp.json)
 ## More Examples
 
 For complete setup and migration guidance, read the
-[Bilt MCP documentation](https://docs.bilt.me/quickstart-mcp).
+[Bilt MCP documentation](https://bilt.me/docs/quickstart-mcp).

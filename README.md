@@ -141,7 +141,7 @@ Existing configurations must:
 
 ## Documentation and support
 
-- [Bilt MCP documentation](https://docs.bilt.me/quickstart-mcp)
+- [Bilt MCP documentation](https://bilt.me/docs/quickstart-mcp)
 - [Integration examples](examples/)
 - [GitHub issues](https://github.com/buildingapplications/mcp/issues)
 - [support@bilt.me](mailto:support@bilt.me)

@@ -14,6 +14,6 @@ Read [SKILL.md](SKILL.md) for the tool contract and workflow rules. See [example
 
 ## Support
 
-- [Bilt MCP documentation](https://docs.bilt.me/quickstart-mcp)
+- [Bilt MCP documentation](https://bilt.me/docs/quickstart-mcp)
 - [GitHub issues](https://github.com/buildingapplications/mcp/issues)
 - [support@bilt.me](mailto:support@bilt.me)
