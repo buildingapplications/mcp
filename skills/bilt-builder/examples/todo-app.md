@@ -25,7 +25,7 @@ Retain the returned `id` as `projectId`.
 bilt_get_session(projectId: "project-id")
 ```
 
-If `hasActiveWorkflows` is true, wait before sending unrelated work. This includes queued workflows.
+If `hasActiveWorkflows` is true, wait before sending unrelated work. This includes queued workflows. Call `bilt_get_session(projectId: "project-id", waitSeconds: 25)` until it is false.
 
 ## 3. Send the build request
 
@@ -36,9 +36,19 @@ bilt_send_message(
 )
 ```
 
-The response may be completed, queued, paused, failed, or timed out.
+The response may be completed, queued, running, or paused. A failure is a tool error.
 
-## 4. Handle a paused question
+## 4. Follow running work
+
+A build usually takes longer than the send call waits, so it returns `running` or `queued`. Do not resend the instruction. Follow it instead:
+
+```text
+bilt_get_session(projectId: "project-id", waitSeconds: 25)
+```
+
+Each call returns once the work stops or a `pendingRequest` appears, or after about 25 seconds. Repeat while `hasActiveWorkflows` is true. If `pendingRequest` is set, handle it as in step 5.
+
+## 5. Handle a paused question
 
 If the response contains `pauseType: "questions"`, answer with the returned `workflowId`:
 
@@ -52,7 +62,7 @@ bilt_send_message(
 
 If it pauses for secrets or Supabase, give the user the returned `projectUrl` instead of putting credentials in an MCP call.
 
-## 5. Inspect and iterate
+## 6. Inspect and iterate
 
 ```text
 bilt_get_messages(projectId: "project-id")

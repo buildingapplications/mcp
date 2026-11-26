@@ -9,7 +9,7 @@ Use the Bilt MCP tools to create and manage mobile app projects. Keep project id
 | `bilt_list_projects` | none | List the authenticated user's projects |
 | `bilt_get_project` | `projectId` | Get one project |
 | `bilt_create_project` | `name`, optional `description` | Create a project |
-| `bilt_get_session` | `projectId` | Get session state, workflows, and `hasActiveWorkflows` |
+| `bilt_get_session` | `projectId`, optional `waitSeconds` | Get session state, workflows, and `hasActiveWorkflows`; `waitSeconds` (up to 25) waits for active work |
 | `bilt_send_message` | `projectId`, optional `message`, `answers`, `workflowId` | Start work, send follow-up instructions, or answer paused questions |
 | `bilt_cancel_workflow` | `projectId` | Cancel the active workflow |
 | `bilt_get_messages` | `projectId` | Get the project's conversation history |
@@ -33,10 +33,10 @@ There is no `bilt_resume_workflow` tool. Question answers resume through `bilt_s
 1. Call `bilt_list_projects` before creating a project. Reuse a matching project when the user asks to modify existing work.
 2. Create a project when needed and retain its `id` as `projectId`.
 3. Call `bilt_get_session` with `projectId`.
-4. If `hasActiveWorkflows` is true, do not send unrelated work. A `queued` workflow is active; wait and check the session again.
+4. If `hasActiveWorkflows` is true, do not send unrelated work. A `queued` workflow is active; call `bilt_get_session` with `waitSeconds: 25` until it clears.
 5. Call `bilt_send_message` with a specific instruction.
 6. Handle the result by status:
-   - `queued`: keep the `workflowId` and check `bilt_get_session` until the queued or running workflow clears.
+   - `running` or `queued`: the work continues, so do not resend. Keep the `workflowId` and call `bilt_get_session` with `waitSeconds: 25`. Each call returns once the work stops or a `pendingRequest` appears, or after about 25 seconds. Repeat while `hasActiveWorkflows` is true, handle any `pendingRequest`, then read `bilt_get_messages`. Builds usually take a few minutes.
    - `paused` with `pauseType: questions`: send structured answers through `bilt_send_message`.
    - `paused` with `pauseType: secrets` or `supabase`: share `projectUrl` with the user and ask them to complete the action there. The workflow resumes automatically afterward.
    - `completed`: report the result and `projectUrl`.
