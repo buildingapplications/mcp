@@ -44,7 +44,7 @@ The agent should list existing projects, create one if necessary, check its sess
 | Tools are missing | Restart the OpenClaw gateway and verify the server is under `mcp.servers` |
 | Authentication fails | Generate a current token and keep the `Bearer ` prefix |
 | Connection uses SSE | Set `transport` to `streamable-http` and use `/mcp`, not `/mcp/sse` |
-| Workflow is queued | Call `bilt_get_session` and wait until `hasActiveWorkflows` is false |
+| Workflow is queued or running | Call `bilt_get_session` with `waitSeconds: 25` until `hasActiveWorkflows` is false; do not resend the instruction |
 | Workflow asks questions | Answer through `bilt_send_message` with `workflowId` and JSON-encoded `answers` |
 | Workflow asks for secrets | Open the returned `projectUrl` and enter them there |
 

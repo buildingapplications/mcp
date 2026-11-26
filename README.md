@@ -96,7 +96,7 @@ Bilt exposes seven tools:
 | `bilt_list_projects` | List projects owned by the authenticated user |
 | `bilt_get_project` | Get one project by `projectId` |
 | `bilt_create_project` | Create a project from a `name` and optional `description` |
-| `bilt_get_session` | Get session and workflow state for a `projectId` |
+| `bilt_get_session` | Get session and workflow state for a `projectId`; optional `waitSeconds` waits for active work |
 | `bilt_send_message` | Send build instructions or answer paused workflow questions |
 | `bilt_cancel_workflow` | Cancel the active workflow for a `projectId` |
 | `bilt_get_messages` | Get conversation history for a `projectId` |
@@ -112,6 +112,8 @@ All public input fields use camelCase. `bilt_send_message` accepts a `projectId`
 ```
 
 There is no separate resume tool. If a workflow pauses for questions, answer them with `bilt_send_message`. If it pauses for secrets or a Supabase connection, open the returned `projectUrl`, complete the requested action there, and the workflow will resume automatically.
+
+A build that outlasts the send call's 10-second wait returns `running` or `queued`. Do not resend it. Follow it with `bilt_get_session` and `waitSeconds` (up to 25): each call returns once the work stops or the agent asks for input, or when the wait runs out. Repeat while `hasActiveWorkflows` is true.
 
 Queued workflows count as active. Before sending unrelated work, call `bilt_get_session` and wait until `hasActiveWorkflows` is false.
 
